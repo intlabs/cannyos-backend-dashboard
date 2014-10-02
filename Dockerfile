@@ -37,13 +37,8 @@ RUN mkdir -p /etc/service/gunicorn
 ADD run_gunicorn.sh /etc/service/gunicorn/run
 RUN chown root /etc/service/gunicorn/run
 
-# Add a spin-docker client to report gunicorn access activity to spin-docker
-ADD sd_gunicorn_client.py /opt/sd_client.py
-ADD sd_client_crontab /var/spool/cron/crontabs/root
-RUN chown root /opt/sd_client.py /var/spool/cron/crontabs/root
-
 # Clean up APT when done
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Spin-docker currently supports exposing port 22 for SSH and
 # one additional application port (our site will run on 80)

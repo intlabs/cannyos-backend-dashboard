@@ -33,7 +33,7 @@ RUN touch /var/log/gunicorn/access.log
 RUN touch /var/log/gunicorn/error.log
 
 # Install gunicorn runit service
-RUN mkdir /etc/service/gunicorn
+RUN mkdir -p /etc/service/gunicorn
 ADD run_gunicorn.sh /etc/service/gunicorn/run
 RUN chown root /etc/service/gunicorn/run
 

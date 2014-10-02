@@ -11,6 +11,7 @@ ENV HOME /root
 RUN /usr/sbin/enable_insecure_key
 
 # Install pyScss
+RUN apt-get update
 RUN apt-get install -y libpcre3-dev
 RUN apt-get install -y python-pyscss python-yaml
 RUN pip install pyScss

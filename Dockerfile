@@ -13,6 +13,8 @@ ENV HOME /root
 
 # Add the Django app to the container and install its requirements
 ADD sd_sample_project /var/www/django
+RUN sed -i 's/# \(.*universe$\)/\1/g' /etc/apt/sources.list
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python-pip
 RUN pip install virtualenv
 RUN virtualenv /var/www/venv

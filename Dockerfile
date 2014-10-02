@@ -14,7 +14,6 @@ RUN /usr/sbin/enable_insecure_key
 RUN apt-get update
 RUN apt-get install -y libpcre3-dev
 RUN apt-get install -y python-yaml
-RUN pip install pyScss
 
 # Add the Django app to the container and install its requirements
 #ADD sd_sample_project /var/www/django

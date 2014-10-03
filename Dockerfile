@@ -21,16 +21,14 @@ RUN virtualenv /var/www/venv
 RUN /var/www/venv/bin/pip install -r /var/www/django/requirements/production.txt
 
 # Syncdb (a sqlite3 database for simplicity)
-ENV PYTHONPATH $PYTHONPATH:/var/www/django/sd_sample_project
-ENV DJANGO_SETTINGS_MODULE sd_sample_project.settings.production
-ENV SECRET_KEY no-so-secret # Fix for your own site!
-RUN /var/www/venv/bin/django-admin.py syncdb --migrate --noinput
-RUN /var/www/venv/bin/django-admin.py collectstatic --noinput
+#ENV PYTHONPATH $PYTHONPATH:/var/www/django/sd_sample_project
+#ENV DJANGO_SETTINGS_MODULE sd_sample_project.settings.production
+#ENV SECRET_KEY no-so-secret # Fix for your own site!
+#RUN /var/www/venv/bin/django-admin.py syncdb --migrate --noinput
+#RUN /var/www/venv/bin/django-admin.py collectstatic --noinput
 
 # Create gunicorn log files
-RUN mkdir /var/log/gunicorn
-RUN touch /var/log/gunicorn/access.log
-RUN touch /var/log/gunicorn/error.log
+RUN mkdir /var/log/gunicorn && touch /var/log/gunicorn/access.log && touch /var/log/gunicorn/error.log
 
 # Install gunicorn runit service
 RUN mkdir -p /etc/service/gunicorn
@@ -45,4 +43,4 @@ RUN chown root /etc/service/gunicorn/run
 EXPOSE 22 80
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+CMD ["bash"]
